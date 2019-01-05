@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Java8Tester {
@@ -73,6 +74,9 @@ public class Java8Tester {
     int totalMoney = javaProgrammers.parallelStream().mapToInt(p1 -> p1.getSalary()).sum();
     System.out.println(totalMoney);
 
+    List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
+    eval(list, n-> n % 2 == 0);
+
   }
   interface MathOperation {
     int operation(int a, int b);
@@ -83,5 +87,11 @@ public class Java8Tester {
   private int operate(int a, int b, MathOperation mathOperation) {
     return mathOperation.operation(a, b);
   }
-
+  public static void eval(List<Integer> list, Predicate<Integer> predicate) {
+    for (Integer n : list) {
+      if (predicate.test(n)) {
+        System.out.print(n + " ");
+      }
+    }
+  }
 }
